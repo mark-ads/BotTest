@@ -3,6 +3,8 @@ import threading
 from pathlib import Path
 from utils.logs import logger, user_logger, log_message
 
+# Модуль для хранения и записи состояний меню, чтобы при перезагрузке бот "знал" в каком меню находился пользователь
+
 states_file_path = 'resources/.user_states.json'
 
 timer_is_active = False
@@ -27,7 +29,6 @@ def save_states_process():
 
     with lock:
         try:
-            # Сохраняем изменения в файл
             with open(states_file_path, 'w', encoding='utf-8') as f:
                 json.dump(user_states, f, ensure_ascii=False, indent=4)
         except Exception as e:
@@ -103,7 +104,6 @@ def save_states():
 def save_states_now():
     global user_states
     try:
-        # Сохраняем изменения в файл
         with open(states_file_path, 'w', encoding='utf-8') as f:
             json.dump(user_states, f, ensure_ascii=False, indent=4)
         return True

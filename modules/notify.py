@@ -4,6 +4,8 @@ from modules.users import users
 from modules import buttons
 from utils.logs import log_message, logger
 
+# Этот модуль нужен чтобы админ мог отправить ежедневное сообщение всем зарегистрированым пользователям 
+
 admin_notifications = {}
 
 def show_notification_menu(message):
@@ -70,7 +72,7 @@ def edit_notification(message):
         show_notification_menu(message)
     else:
         global admin_notifications
-        notification = message.html_text  # Получаем текст с форматированием HTML
+        notification = message.html_text
         admin_notifications[admin_id] = notification
         show_notification_menu(message)
 
